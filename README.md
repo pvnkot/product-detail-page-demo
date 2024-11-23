@@ -9,10 +9,15 @@ Currently, two official plugins are available:
 
 ## Assessment specific details
 
-1. Initialized repository on Git.
-2. Looked into using the best starter kit for React. Found create-react-app (CRA), and vite as simple options. Choose vite for its efficient and faster bundling and deployment times over CRA (which uses webpack under the hood).
-3. Found a simple guide for deploying this website on AWS amplify as P0. For P1, If I can, I'll write CDK code that can help keep track of and automate other infrastructure deployments.
-4. Implemented a redux store for the app, with a fake response.
+- Initialized repository on Git.
+- Looked into using the best starter kit for React. Found create-react-app (CRA), and vite as simple options. Choose vite for its efficient and faster bundling and deployment times over CRA (which uses webpack under the hood).
+- Found a simple guide for deploying this website on AWS amplify as P0. For P1, If I can, I'll write CDK code that can help keep track of and automate other infrastructure deployments.
+- Added support for the following developer tooling:
+  - ESlint
+  - Prettier + Autoformatting
+  - Absolute paths in workspace
+- Implemented a redux store for the app, with a fake response.
+
 5. Added AntD as the design UI Library for building the UI.
 
 ## Expanding the ESLint configuration
