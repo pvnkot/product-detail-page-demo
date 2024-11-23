@@ -1,11 +1,12 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import { productDetailsReducer } from 'src/store/reducers/productDetailsSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const store = configureStore({
   reducer: { productDetails: productDetailsReducer },
 });
 
-console.log(store.getState());
+console.log({ uponConfiguration: store.getState() });
 
 export type AppStore = typeof store;
 export type RootState = ReturnType<AppStore['getState']>;
@@ -18,3 +19,6 @@ export type AppThunk<ThunkReturnType = void> = ThunkAction<
   unknown,
   Action
 >;
+
+export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
+export const useAppSelector = useSelector.withTypes<RootState>();

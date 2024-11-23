@@ -8,9 +8,12 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 ## Assessment specific details
+
 1. Initialized repository on Git.
 2. Looked into using the best starter kit for React. Found create-react-app (CRA), and vite as simple options. Choose vite for its efficient and faster bundling and deployment times over CRA (which uses webpack under the hood).
-3. Found a simple guide for deploying this website on AWS amplify as P0. If I can, I'll write CDK code that can help keep track of and automate other infrastructure deployments.
+3. Found a simple guide for deploying this website on AWS amplify as P0. For P1, If I can, I'll write CDK code that can help keep track of and automate other infrastructure deployments.
+4. Implemented a redux store for the app, with a fake response.
+5. Added AntD as the design UI Library for building the UI.
 
 ## Expanding the ESLint configuration
 
@@ -27,7 +30,7 @@ export default tseslint.config({
       tsconfigRootDir: import.meta.dirname,
     },
   },
-})
+});
 ```
 
 - Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
@@ -36,7 +39,7 @@ export default tseslint.config({
 
 ```js
 // eslint.config.js
-import react from 'eslint-plugin-react'
+import react from 'eslint-plugin-react';
 
 export default tseslint.config({
   // Set the react version
@@ -51,5 +54,5 @@ export default tseslint.config({
     ...react.configs.recommended.rules,
     ...react.configs['jsx-runtime'].rules,
   },
-})
+});
 ```
