@@ -12,7 +12,7 @@ export const getProductDetailsByIdFromServer = (input: ApiRequestPayload) => {
       resolve({
         data: getProductHighlights(input?.productId || ''),
       });
-    }, 5500)
+    }, 500)
   );
 };
 
@@ -34,6 +34,6 @@ export const getSalesReportsFromServer = (input: ApiRequestPayload) => {
       resolve({
         data: getSalesReportsById(input?.productId || ''),
       });
-    }, 5500)
+    }, 500)
   );
 };
