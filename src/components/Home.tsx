@@ -1,16 +1,39 @@
-import { getProductDetailsByIdSelector } from 'src/store/selectors';
+import { getProductsListSelector } from 'src/store/selectors';
 import { useAppDispatch, useAppSelector } from 'src/store';
-import { getProductDetailsByIdDispatch } from 'src/store/dispatch/getProductDetailsByIdDispatch';
+import { getProductsListDispatch } from 'src/store/dispatch/getProductsListDispatch';
 import { useEffect } from 'react';
+import { Flex, Layout, theme } from 'antd';
+import { Header } from './Header';
+import { ProductHighlights } from './product-highlights/ProductHighlights';
+
+const { useToken } = theme;
 
 export const Home = () => {
-  const productDetails = useAppSelector(getProductDetailsByIdSelector);
+  const { token } = useToken();
+  const productsList = useAppSelector(getProductsListSelector);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getProductDetailsByIdDispatch({ productId: 'Foo' }));
-    console.log({ getProductDetailsByIdDispatch });
-  }, []);
+    dispatch(getProductsListDispatch());
+  }, [getProductsListDispatch]);
 
-  return <div>{JSON.stringify(productDetails)}</div>;
+  return (
+    <Flex>
+      <Layout
+        style={{
+          width: '100%',
+          height: '100vh',
+          color: token.colorBgContainer,
+          gap: '8px',
+        }}
+      >
+        <Header />
+
+        <Layout>
+          <ProductHighlights productId={productsList.value?.[0] || ''} />
+          <Layout.Content>Main content</Layout.Content>
+        </Layout>
+      </Layout>
+    </Flex>
+  );
 };

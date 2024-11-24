@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { GetProductDetailsByIdInput } from '../actions/requestPayloads';
-import { ProductDetails } from '../reducers/responsePayloads';
+import { getProductDetailsByIdFromServer } from 'src/apis/getProductDetailsById';
 
 export const enum Dispatch {
   GetProductDetailsById = 'productDetailsById',
@@ -8,22 +8,7 @@ export const enum Dispatch {
 
 const getProductDetailsById = (
   productDetailsByIdInput: GetProductDetailsByIdInput
-) => {
-  // the inside "thunk function"
-  console.log({ request: productDetailsByIdInput });
-  return new Promise<{ data: ProductDetails }>((resolve) =>
-    setTimeout(() => {
-      resolve({
-        data: {
-          id: 'DUMMYID1',
-          title: 'DEMO product',
-          image: 'IMG1',
-          brand: 'BRAND1',
-        },
-      });
-    }, 500)
-  );
-};
+) => getProductDetailsByIdFromServer(productDetailsByIdInput);
 
 export const getProductDetailsByIdDispatch = createAsyncThunk(
   Dispatch.GetProductDetailsById,

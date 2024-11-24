@@ -1,3 +1,5 @@
+export type ProductIds = string[];
+
 export interface ProductDetails {
   id: string;
   title: string;

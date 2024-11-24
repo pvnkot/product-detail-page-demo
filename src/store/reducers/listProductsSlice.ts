@@ -1,14 +1,14 @@
-import { GET_PRODUCT_DETAILS_ACTION } from 'src/store/actions/constants';
+import { GET_PRODUCTS_LIST_ACTION } from 'src/store/actions/constants';
 import {
-  ProductDetails,
+  ProductIds,
   ApiResponsePayload,
 } from 'src/store/reducers/responsePayloads';
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { ApiRequestPayload } from 'src/store/actions/requestPayloads';
-import { getProductDetailsByIdDispatch } from 'src/store/dispatch/getProductDetailsByIdDispatch';
+import { getProductsListDispatch } from '../dispatch/getProductsListDispatch';
 
-const initialState: ApiResponsePayload<ProductDetails> = {
+const initialState: ApiResponsePayload<ProductIds> = {
   status: 'loading',
   value: undefined,
 };
@@ -16,21 +16,20 @@ const initialState: ApiResponsePayload<ProductDetails> = {
 const reducer = (
   state = initialState,
   action: PayloadAction<ApiRequestPayload>
-): ApiResponsePayload<ProductDetails> | undefined => {
+): ApiResponsePayload<ProductIds> | undefined => {
   switch (action.type) {
-    case GET_PRODUCT_DETAILS_ACTION.PENDING: {
+    case GET_PRODUCTS_LIST_ACTION.PENDING: {
       state.status = 'loading';
       state.value = undefined;
 
       return state;
     }
-    case GET_PRODUCT_DETAILS_ACTION.SUCCESS: {
+    case GET_PRODUCTS_LIST_ACTION.SUCCESS: {
       state.status = 'success';
-      state.value = initialState.value;
 
       return state;
     }
-    case GET_PRODUCT_DETAILS_ACTION.FAILURE: {
+    case GET_PRODUCTS_LIST_ACTION.FAILURE: {
       state.status = 'failure';
       state.value = undefined;
 
@@ -41,25 +40,25 @@ const reducer = (
   }
 };
 
-export const productDetailsSlice = createSlice({
-  name: 'productDetails',
+export const productsListSlice = createSlice({
+  name: 'products',
   initialState,
   reducers: {
-    getProductDetailsById: reducer,
+    getProductsList: reducer,
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getProductDetailsByIdDispatch.pending, (state) => {
+      .addCase(getProductsListDispatch.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(getProductDetailsByIdDispatch.fulfilled, (state, action) => {
+      .addCase(getProductsListDispatch.fulfilled, (state, action) => {
         state.status = 'success';
         state.value = action.payload;
       })
-      .addCase(getProductDetailsByIdDispatch.rejected, (state) => {
+      .addCase(getProductsListDispatch.rejected, (state) => {
         state.status = 'failure';
       });
   },
 });
 
-export const productDetailsReducer = productDetailsSlice.reducer;
+export const productsListReducer = productsListSlice.reducer;
