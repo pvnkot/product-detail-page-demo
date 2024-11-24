@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { store } from 'src/store';
 import App from 'src/App.tsx';
-import { Button, ConfigProvider, theme } from 'antd';
+import { ConfigProvider, theme } from 'antd';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
