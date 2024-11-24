@@ -1,4 +1,8 @@
-import { getProductHighlights, getProductsList } from 'src/mockData/mockApis';
+import {
+  getProductHighlights,
+  getProductsList,
+  getSalesReportsById,
+} from 'src/mockData/mockApis';
 import { ApiRequestPayload } from 'src/store/actions/requestPayloads';
 
 export const getProductDetailsByIdFromServer = (input: ApiRequestPayload) => {
@@ -18,6 +22,17 @@ export const getProductsListFromServer = () => {
     setTimeout(() => {
       resolve({
         data: getProductsList(),
+      });
+    }, 500)
+  );
+};
+
+export const getSalesReportsFromServer = (input: ApiRequestPayload) => {
+  console.log({ requestBeforeServerCall: input });
+  return new Promise<{ data: any }>((resolve) =>
+    setTimeout(() => {
+      resolve({
+        data: getSalesReportsById(input?.productId || ''),
       });
     }, 500)
   );

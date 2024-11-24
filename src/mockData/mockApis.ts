@@ -54,3 +54,10 @@ export const getProductHighlights = (id: string) => {
 
 export const getProductsList = () =>
   getRawResponse().map((product) => product.id);
+
+export const getSalesReportsById = (id: string) => {
+  const { id: productId, sales: salesReports } =
+    getRawResponse().find((product) => product.id === id) || {};
+
+  return { id: productId, salesReportsList: salesReports };
+};

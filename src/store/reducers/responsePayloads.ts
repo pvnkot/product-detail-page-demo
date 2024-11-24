@@ -11,6 +11,19 @@ export interface ProductDetails {
   tags: string[];
 }
 
+export interface SalesReportRecord {
+  weekEnding: string;
+  retailSales: number;
+  wholesaleSales: number;
+  unitsSold: number;
+  retailerMargin: number;
+}
+
+export interface SalesReportsData {
+  productId: string;
+  salesReportsList: SalesReportRecord[];
+}
+
 export interface ApiResponsePayload<T> {
   status: 'loading' | 'success' | 'failure';
   value: T | undefined;

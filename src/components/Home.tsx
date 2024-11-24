@@ -4,7 +4,8 @@ import { getProductsListDispatch } from 'src/store/dispatch/getProductsListDispa
 import { useEffect } from 'react';
 import { Flex, Layout, Row, theme } from 'antd';
 import { Header } from './Header';
-import { ProductHighlights } from './product-highlights/ProductHighlights';
+import { ProductHighlights } from 'src/components/product-highlights/ProductHighlights';
+import { SalesDataTable } from 'src/components/sales-data-table/SalesDataTable';
 
 const { useToken } = theme;
 
@@ -33,9 +34,9 @@ export const Home = () => {
       >
         <Header />
 
-        <Row style={{ width: '100%', height: '100%', gap: '16px' }}>
+        <Row style={{ maxWidth: '100%', height: '100%', gap: '16px' }}>
           <ProductHighlights productId={productsListState.value?.[0] || ''} />
-          <Layout.Content>Main content</Layout.Content>
+          <SalesDataTable productId={productsListState.value?.[0] || ''} />
         </Row>
       </Layout>
     </Flex>

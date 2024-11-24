@@ -25,8 +25,8 @@ export const ProductHighlights = ({ productId }: { productId: string }) => {
         backgroundColor: '#fffff',
         height: '100%',
         textAlign: 'center',
-        width: '25%',
-        boxShadow: '',
+        maxWidth: '25%',
+        // boxShadow: '',
       }}
     >
       <Col flex="auto" style={{ width: '100%', height: '100%' }}>
@@ -46,8 +46,8 @@ export const ProductHighlights = ({ productId }: { productId: string }) => {
         {!!productTags && productTags?.length > 0 && (
           <>
             <Divider />
-            {productTags.map((tag) => (
-              <Tag>{tag}</Tag>
+            {productTags.map((tag, idx) => (
+              <Tag key={idx}>{tag}</Tag>
             ))}
             <Divider />
           </>

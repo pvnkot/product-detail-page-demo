@@ -2,11 +2,13 @@ import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import { productDetailsReducer } from 'src/store/reducers/productDetailsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { productsListReducer } from 'src/store/reducers/listProductsSlice';
+import { salesReportsListReducer } from './reducers/salesReportsSlice';
 
 export const store = configureStore({
   reducer: {
     productDetails: productDetailsReducer,
     productsList: productsListReducer,
+    salesReportsList: salesReportsListReducer,
   },
 });
 
