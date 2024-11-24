@@ -1,20 +1,17 @@
-import { Flex, Layout } from 'antd';
+import { Card, Col, Divider, Tag } from 'antd';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/store';
 import { getProductDetailsByIdDispatch } from 'src/store/dispatch/getProductDetailsByIdDispatch';
-import { getProductsListDispatch } from 'src/store/dispatch/getProductsListDispatch';
-import {
-  getProductDetailsByIdSelector,
-  getProductsListSelector,
-} from 'src/store/selectors';
+import { getProductDetailsByIdSelector } from 'src/store/selectors';
 
 export const ProductHighlights = ({ productId }: { productId: string }) => {
   const dispatch = useAppDispatch();
   const productDetailsState = useAppSelector(getProductDetailsByIdSelector);
+  const productTags = productDetailsState.value?.tags;
 
   useEffect(() => {
     dispatch(getProductDetailsByIdDispatch({ productId }));
-  }, []);
+  }, [productId]);
 
   if (productDetailsState.status !== 'success') {
     return <div>{productDetailsState.status}</div>;
@@ -23,19 +20,39 @@ export const ProductHighlights = ({ productId }: { productId: string }) => {
   console.log({ productDetailsState });
 
   return (
-    <Layout.Sider
+    <Card
       style={{
-        backgroundColor: '#000000',
-        alignItems: 'center',
-
+        backgroundColor: '#fffff',
         height: '100%',
-        gap: '8px',
-        width: '30%',
-        textDecorationColor: '#15141A',
+        textAlign: 'center',
+        width: '25%',
+        boxShadow: '',
       }}
     >
-      <strong>{productDetailsState.value?.title}</strong>
-      <p>{productDetailsState.value?.subtitle}</p>
-    </Layout.Sider>
+      <Col flex="auto" style={{ width: '100%', height: '100%' }}>
+        <img
+          src={productDetailsState.value?.image}
+          style={{
+            height: '150px',
+            width: '150px',
+          }}
+        />
+
+        <p style={{ fontWeight: 'bold', fontSize: '24px' }}>
+          {productDetailsState.value?.title}
+        </p>
+
+        <p style={{ color: 'grey' }}>{productDetailsState.value?.subtitle}</p>
+        {!!productTags && productTags?.length > 0 && (
+          <>
+            <Divider />
+            {productTags.map((tag) => (
+              <Tag>{tag}</Tag>
+            ))}
+            <Divider />
+          </>
+        )}
+      </Col>
+    </Card>
   );
 };

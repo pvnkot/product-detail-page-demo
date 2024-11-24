@@ -1,11 +1,14 @@
 export type ProductIds = string[];
 
 export interface ProductDetails {
-  id: string;
+  productId: string;
   title: string;
-  image?: string;
-  subtitle?: string;
+  image: string;
+  subtitle: string;
   brand: string;
+  retailer: string;
+  details: string[];
+  tags: string[];
 }
 
 export interface ApiResponsePayload<T> {
