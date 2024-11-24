@@ -5,10 +5,6 @@ import { getSalesReportsListSelector } from 'src/store/selectors';
 import { DateTime } from 'luxon';
 import { SalesReportRecord } from 'src/store/reducers/responsePayloads';
 
-interface PlotData {
-  month: { retailSales: number };
-}
-
 export const useGetPlotData = (productId: string) => {
   const dispatch = useAppDispatch();
   const salesReportsState = useAppSelector(getSalesReportsListSelector);
