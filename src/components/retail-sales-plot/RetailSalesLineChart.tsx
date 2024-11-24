@@ -6,7 +6,6 @@ import { Card } from 'antd';
 export const RetailSalesLineChart = ({ productId }: { productId: string }) => {
   const plotData = useGetPlotData(productId);
   useEffect(() => {}, [plotData]);
-  console.log({ plotData });
 
   return (
     <Card

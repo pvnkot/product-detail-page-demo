@@ -12,8 +12,6 @@ export const store = configureStore({
   },
 });
 
-console.log({ uponConfiguration: store.getState() });
-
 export type AppStore = typeof store;
 export type RootState = ReturnType<AppStore['getState']>;
 // Infer the `AppDispatch` type from the store itself

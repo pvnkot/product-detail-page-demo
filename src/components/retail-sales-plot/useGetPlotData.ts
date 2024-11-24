@@ -15,7 +15,6 @@ export const useGetPlotData = (productId: string) => {
   }, [productId]);
 
   if (!salesReportsList) return undefined;
-  console.log({ salesReportsList });
 
   const plotData = [...salesReportsList]
     .map((salesRecord: SalesReportRecord) => {
