@@ -1,6 +1,5 @@
 import { GET_SALES_DATA_ACTION } from 'src/store/actions/constants';
 import {
-  ProductDetails,
   ApiResponsePayload,
   SalesReportsData,
 } from 'src/store/reducers/responsePayloads';

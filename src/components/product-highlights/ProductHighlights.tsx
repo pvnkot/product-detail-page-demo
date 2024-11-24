@@ -1,4 +1,4 @@
-import { Card, Col, Divider, Tag } from 'antd';
+import { Card, Divider, Tag } from 'antd';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/store';
 import { getProductDetailsByIdDispatch } from 'src/store/dispatch/getProductDetailsByIdDispatch';
