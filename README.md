@@ -18,7 +18,11 @@ Currently, two official plugins are available:
   - Absolute paths in workspace
 - Implemented a redux store for the app, with a fake response.
 
-5. Added AntD as the design UI Library for building the UI.
+- Added AntD as the design UI Library for building the UI.
+- Based on the mocks, created a responsive layout for the app by using containers and avoiding absolute pixel dimensions as far as possible.
+- Added loading skeletons for a better UI experience.
+- Added sorting capabilities on the table.
+- Added a basic graph for the retail sales by month and year.
 
 ## Expanding the ESLint configuration
 
