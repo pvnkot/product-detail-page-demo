@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/store';
 import { getProductDetailsByIdDispatch } from 'src/store/dispatch/getProductDetailsByIdDispatch';
 import { getProductDetailsByIdSelector } from 'src/store/selectors';
+import { ProductHighlightsSkeleton } from './ProductHighlightsSkeleton';
 
 export const ProductHighlights = ({ productId }: { productId: string }) => {
   const dispatch = useAppDispatch();
@@ -13,11 +14,9 @@ export const ProductHighlights = ({ productId }: { productId: string }) => {
     dispatch(getProductDetailsByIdDispatch({ productId }));
   }, [productId]);
 
-  if (productDetailsState.status !== 'success') {
-    return <div>{productDetailsState.status}</div>;
+  if (productDetailsState.status === 'failure') {
+    return null; // TODO Handle error state
   }
-
-  console.log({ productDetailsState });
 
   return (
     <Card
@@ -28,26 +27,32 @@ export const ProductHighlights = ({ productId }: { productId: string }) => {
         boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
       }}
     >
-      <img
-        src={productDetailsState.value?.image}
-        style={{
-          height: '150px',
-          width: '150px',
-        }}
-      />
-
-      <p style={{ fontWeight: 'bold', fontSize: '24px' }}>
-        {productDetailsState.value?.title}
-      </p>
-
-      <p style={{ color: 'grey' }}>{productDetailsState.value?.subtitle}</p>
-      {!!productTags && productTags?.length > 0 && (
+      {productDetailsState.status === 'loading' ? (
+        <ProductHighlightsSkeleton />
+      ) : (
         <>
-          <Divider />
-          {productTags.map((tag, idx) => (
-            <Tag key={idx}>{tag}</Tag>
-          ))}
-          <Divider />
+          <img
+            src={productDetailsState.value?.image}
+            style={{
+              height: '150px',
+              width: '150px',
+            }}
+          />
+
+          <p style={{ fontWeight: 'bold', fontSize: '24px' }}>
+            {productDetailsState.value?.title}
+          </p>
+
+          <p style={{ color: 'grey' }}>{productDetailsState.value?.subtitle}</p>
+          {!!productTags && productTags?.length > 0 && (
+            <>
+              <Divider />
+              {productTags.map((tag, idx) => (
+                <Tag key={idx}>{tag}</Tag>
+              ))}
+              <Divider />
+            </>
+          )}
         </>
       )}
     </Card>

@@ -11,12 +11,16 @@ export const columns: TableProps<SalesReportRecord>['columns'] = [
     dataIndex: 'weekEnding',
     key: 'weekEnding',
     render: (text) => <p>{text}</p>,
+    sorter: (a, b) => a.weekEnding.localeCompare(b.weekEnding),
+    sortDirections: ['descend', 'ascend'],
   },
   {
     title: 'Retail Sales',
     dataIndex: 'retailSales',
     key: 'retailSales',
     render: (retailSales: number) => <p>{getCurrencyInUSD(retailSales)}</p>,
+    sorter: (a, b) => a.retailSales - b.retailSales,
+    sortDirections: ['descend', 'ascend'],
   },
   {
     title: 'Wholesale Sales',
@@ -25,12 +29,16 @@ export const columns: TableProps<SalesReportRecord>['columns'] = [
     render: (wholesaleSales: number) => (
       <p>{getCurrencyInUSD(wholesaleSales)}</p>
     ),
+    sorter: (a, b) => a.wholesaleSales - b.wholesaleSales,
+    sortDirections: ['descend', 'ascend'],
   },
   {
     title: 'Units sold',
     dataIndex: 'unitsSold',
     key: 'unitsSold',
     render: (text) => <p>{text}</p>,
+    sorter: (a, b) => a.unitsSold - b.unitsSold,
+    sortDirections: ['descend', 'ascend'],
   },
   {
     title: 'Retailer Margin',
@@ -39,5 +47,7 @@ export const columns: TableProps<SalesReportRecord>['columns'] = [
     render: (retailerMargin: number) => (
       <p>{getCurrencyInUSD(retailerMargin)}</p>
     ),
+    sorter: (a, b) => a.retailerMargin - b.retailerMargin,
+    sortDirections: ['descend', 'ascend'],
   },
 ];
