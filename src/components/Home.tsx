@@ -2,7 +2,7 @@ import { getProductsListSelector } from 'src/store/selectors';
 import { useAppDispatch, useAppSelector } from 'src/store';
 import { getProductsListDispatch } from 'src/store/dispatch/getProductsListDispatch';
 import { useEffect } from 'react';
-import { Col, Flex, Row, Space, theme } from 'antd';
+import { Col, Flex, Row, Space, Spin, theme } from 'antd';
 import { Header } from './Header';
 import { ProductHighlights } from 'src/components/product-highlights/ProductHighlights';
 import { SalesDataTable } from 'src/components/sales-data-table/SalesDataTable';
@@ -18,11 +18,13 @@ export const Home = () => {
     dispatch(getProductsListDispatch());
   }, [getProductsListDispatch]);
 
-  if (productsListState.status !== 'success') {
-    return <div>{productsListState.status}</div>;
+  if (productsListState.status === 'failure') {
+    return null; // TODO implement error status
   }
 
-  return (
+  return productsListState.status === 'loading' ? (
+    <Spin size="large" />
+  ) : (
     <Flex
       vertical
       style={{
