@@ -25,34 +25,31 @@ export const ProductHighlights = ({ productId }: { productId: string }) => {
         backgroundColor: '#fffff',
         height: '100%',
         textAlign: 'center',
-        maxWidth: '25%',
-        // boxShadow: '',
+        boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
       }}
     >
-      <Col flex="auto" style={{ width: '100%', height: '100%' }}>
-        <img
-          src={productDetailsState.value?.image}
-          style={{
-            height: '150px',
-            width: '150px',
-          }}
-        />
+      <img
+        src={productDetailsState.value?.image}
+        style={{
+          height: '150px',
+          width: '150px',
+        }}
+      />
 
-        <p style={{ fontWeight: 'bold', fontSize: '24px' }}>
-          {productDetailsState.value?.title}
-        </p>
+      <p style={{ fontWeight: 'bold', fontSize: '24px' }}>
+        {productDetailsState.value?.title}
+      </p>
 
-        <p style={{ color: 'grey' }}>{productDetailsState.value?.subtitle}</p>
-        {!!productTags && productTags?.length > 0 && (
-          <>
-            <Divider />
-            {productTags.map((tag, idx) => (
-              <Tag key={idx}>{tag}</Tag>
-            ))}
-            <Divider />
-          </>
-        )}
-      </Col>
+      <p style={{ color: 'grey' }}>{productDetailsState.value?.subtitle}</p>
+      {!!productTags && productTags?.length > 0 && (
+        <>
+          <Divider />
+          {productTags.map((tag, idx) => (
+            <Tag key={idx}>{tag}</Tag>
+          ))}
+          <Divider />
+        </>
+      )}
     </Card>
   );
 };

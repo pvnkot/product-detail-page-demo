@@ -2,7 +2,7 @@ import { getProductsListSelector } from 'src/store/selectors';
 import { useAppDispatch, useAppSelector } from 'src/store';
 import { getProductsListDispatch } from 'src/store/dispatch/getProductsListDispatch';
 import { useEffect } from 'react';
-import { Flex, Layout, Row, theme } from 'antd';
+import { Col, Flex, Row, Space, theme } from 'antd';
 import { Header } from './Header';
 import { ProductHighlights } from 'src/components/product-highlights/ProductHighlights';
 import { SalesDataTable } from 'src/components/sales-data-table/SalesDataTable';
@@ -23,22 +23,25 @@ export const Home = () => {
   }
 
   return (
-    <Flex>
-      <Layout
-        style={{
-          width: '100%',
-          height: '100vh',
-          color: token.colorBgContainer,
-          gap: '8px',
-        }}
-      >
+    <Flex
+      vertical
+      style={{
+        maxWidth: '100vw',
+        height: 'vmax',
+        color: token.colorBgContainer,
+      }}
+    >
+      <Space size="small" direction="vertical" style={{ maxWidth: '100vw' }}>
         <Header />
-
-        <Row style={{ maxWidth: '100%', height: '100%', gap: '16px' }}>
-          <ProductHighlights productId={productsListState.value?.[0] || ''} />
-          <SalesDataTable productId={productsListState.value?.[0] || ''} />
+        <Row style={{ maxWidth: '100vw', height: '100%' }} gutter={16}>
+          <Col span={8}>
+            <ProductHighlights productId={productsListState.value?.[0] || ''} />
+          </Col>
+          <Col span={16}>
+            <SalesDataTable productId={productsListState.value?.[0] || ''} />
+          </Col>
         </Row>
-      </Layout>
+      </Space>
     </Flex>
   );
 };

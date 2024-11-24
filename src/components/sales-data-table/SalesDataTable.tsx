@@ -1,8 +1,10 @@
-import { Col, Card } from 'antd';
+import { Card, Table } from 'antd';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/store';
 import { getSalesReportByProductIdDispatch } from 'src/store/dispatch/getSalesReportsDispatch';
+import { SalesReportRecord } from 'src/store/reducers/responsePayloads';
 import { getSalesReportsListSelector } from 'src/store/selectors';
+import { columns } from 'src/components/sales-data-table/tableColumns';
 
 export const SalesDataTable = ({ productId }: { productId: string }) => {
   const dispatch = useAppDispatch();
@@ -17,22 +19,19 @@ export const SalesDataTable = ({ productId }: { productId: string }) => {
     return <div>{salesReportsState.status}</div>;
   }
 
-  console.log({ salesReportsState });
   return (
     <Card
       style={{
         backgroundColor: '#fffff',
-        height: '100%',
-        maxWidth: '75%',
+        boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
       }}
     >
-      <Col style={{ width: '100%', height: '100%' }}>
-        {salesReportsList &&
-          salesReportsList?.length > 0 &&
-          salesReportsList.map((report) => <div>{report.retailSales}</div>)}
-        {salesReportsState.status}
-        {/* Foo */}
-      </Col>
+      {salesReportsList && salesReportsList?.length > 0 && (
+        <Table<SalesReportRecord>
+          columns={columns}
+          dataSource={salesReportsList}
+        />
+      )}
     </Card>
   );
 };
